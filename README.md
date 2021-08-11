@@ -7,12 +7,11 @@
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
 | nickname           | string | null: false |
-| email              | string | null: false |
-| password           | string | null: false |
-| password reconfirmation     | text   | null: false |
-| name full-width    | text   | null: false |
-| name kana full-width| text   | null: false |
-| birthday           | text   | null: false |
+| email              | string |
+| encrypted_password | string | null: false |
+| name full_width    | text   | null: false |
+| name kana full_width| text   | null: false |
+| date           | text   | null: false |
 ## items テーブル
 
 | Column | Type   | Options     |
@@ -26,11 +25,11 @@
 | shipping area   | text   | null: false |
 | date until shipping| references   | |
 | price           | references   | |
-## buy テーブル
+## Purchase record テーブル
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
-| card information    | text | null: false, |
+| card information    | integer | null: false |
 | date of expiry      | references |  |
 | security code       | references |  |
 
@@ -38,8 +37,8 @@
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
 | postal code           | string | null: false |
-| prefectures      | text   | null: false |
-| municipalities         | text   | null: false |
-| addles            | references   | |
-| building name           | string | null: false |
-| telephone number      | text   | null: false |
+<!-- | prefectures      | text   | null: false | -->
+| municipalities         | string   | null: false |
+| addles            | string   | |
+| building name           | string |
+| telephone number      | string   | null: false |

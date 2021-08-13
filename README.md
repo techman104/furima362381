@@ -25,40 +25,27 @@ has_one :addles dependent: :destroy
 
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
-| category_id           | references| null: false,FK:true |
-| shipping_id           | references| null: false,FK:true |
-| brand_id              | references| null: false,FK:true |
-| seller_user_id        | references| null: false,FK:true |
 | name                  | string    | null: false |
 | text                  | text      | null: false |
+| category_id           | references| null: false,FK:true |
 | condition             | integer   | null: false |
-| trading_status        | integer   | null: false |
+| shipping charges      | string    | null: false |
+| shipping area         | string    | null: false |
+| days                  | datetime  | null: false |
 | price                 | integer   | null: false |
-| completed_at          | datetime  |
 
 Association
 belongs_to:user
-belongs_to:category
-has_many :item_images dependent: :destroy
 
-## item_images テーブル
-
-| Column | Type   | Options     |
-| ------ | ------ | ----------- |
-| item_id| references| null: false,FK:true |
-| image_url | string | null: false |
-
-Association
-belongs_to :item
 ## Purchase record テーブル
 userテーブル
-| user情報（主キー)|購入情報(外部キー)|
-|100001          |A00001         |
-|100002          |A00002         |
-|100003          |A00003         |
+|購入情報(外部キー)|
+|A00001         |
+|A00002         |
+|A00003         |
 
 itemsテーブル
-｜購入情報（主キー）｜商品名
+｜購入情報（外部キー）｜商品名
 ｜A000001        ｜マグカップ｜
 |A000002         |熊の人情  |
 |A000003         |炊飯器    |
@@ -70,12 +57,12 @@ itemsテーブル
 | first_name         | string | null: false |
 | family_name_kana   | string | null: false |
 | first_name_kana    | string | null: false |
-| zip_code           | integer | null: false,unique:true |
-| prefecture         | string | null: false |
+| zip_code           | integer| null: false,unique:true |
+| shipping area      | string | null: false | 
 | city               | string | null: false |
 | addles1            | string | null: false |
-| addles2            | string |
-| telephone          | string | unique:true |
+| addles2            | string | 
+| telephone          | integer| unique:true |
 
 Association
 belongs_to:user

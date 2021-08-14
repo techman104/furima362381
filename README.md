@@ -26,15 +26,15 @@ has_many :items
 | text                  | text      | null: false |
 | category_id           | integer   | null: false,FK:true |
 | condition_id          | integer   | null: false |
-| shipping charge_id    | integer   | null: false |
-| shipping area_id      | integer   | null: false |
+| shipping_charge_id    | integer   | null: false |
+| shipping_area_id      | integer   | null: false |
 | day_id                | integer   | null: false |
 | price                 | integer   | null: false |
 
 Association
 belongs_to:user
 
-## Purchase record テーブル
+## Purchase_records テーブル
 userテーブル
 |購入情報(外部キー)|
 |A00001         |
@@ -46,16 +46,16 @@ itemsテーブル
 ｜A000001        
 |A000002        
 |A000003         
-## address テーブル
+## addresses テーブル
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
 | user               | references | null: false,FK:true |
 | zip_code           | string | null: false,unique:true |
-| shipping area_id   | integer| null: false | 
+| shipping_area_id   | integer| null: false | 
 | city               | string | null: false |
 | addles1            | string | null: false |
 | addles2            | string | 
 | telephone          | string | unique:true |
-
+| purchase_record    | references |
 Association
 belongs_to:user

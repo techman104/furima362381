@@ -13,13 +13,10 @@
 | first_name_kana    | string | null: false |
 | email              | string | null: false,unique:true |
 | encrypted_password | string | null: false |
-| birth_year         | string | null: false |
-| birth_month        | string | null: false |
-
+| birth_day          | date   | null: false |
 
 Association
 has_many :items
-has_one :addles dependent: :destroy
 
 ## items テーブル
 
@@ -27,11 +24,11 @@ has_one :addles dependent: :destroy
 | ------ | ------ | ----------- |
 | name                  | string    | null: false |
 | text                  | text      | null: false |
-| category_id           | references| null: false,FK:true |
-| condition             | integer   | null: false |
-| shipping charges      | string    | null: false |
-| shipping area         | string    | null: false |
-| days                  | datetime  | null: false |
+| category_id           | integer   | null: false,FK:true |
+| condition_id          | integer   | null: false |
+| shipping charge_id    | integer   | null: false |
+| shipping area_id      | integer   | null: false |
+| day_id                | integer   | null: false |
 | price                 | integer   | null: false |
 
 Association
@@ -45,24 +42,20 @@ userテーブル
 |A00003         |
 
 itemsテーブル
-｜購入情報（外部キー）｜商品名
-｜A000001        ｜マグカップ｜
-|A000002         |熊の人情  |
-|A000003         |炊飯器    |
-## addles テーブル
+｜購入情報（外部キー）
+｜A000001        
+|A000002        
+|A000003         
+## address テーブル
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
-| user_id            | references | null: false,FK:true |
-| family_name        | string | null: false |
-| first_name         | string | null: false |
-| family_name_kana   | string | null: false |
-| first_name_kana    | string | null: false |
-| zip_code           | integer| null: false,unique:true |
-| shipping area      | string | null: false | 
+| user               | references | null: false,FK:true |
+| zip_code           | string | null: false,unique:true |
+| shipping area_id   | integer| null: false | 
 | city               | string | null: false |
 | addles1            | string | null: false |
 | addles2            | string | 
-| telephone          | integer| unique:true |
+| telephone          | string | unique:true |
 
 Association
 belongs_to:user

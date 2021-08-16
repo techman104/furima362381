@@ -32,30 +32,26 @@ has_many :items
 | price                 | integer   | null: false |
 
 Association
-belongs_to:user
+belongs_to:users
 
 ## Purchase_records テーブル
-userテーブル
-|購入情報(外部キー)|
-|A00001         |
-|A00002         |
-|A00003         |
+| Column             | Type   | Options     |  
+| user_id            | references | nul: false
+|Purchase_information| references | null: false
 
-itemsテーブル
-｜購入情報（外部キー）
-｜A000001        
-|A000002        
-|A000003         
+Association
+belongs_to:users
+belongs_to:items
 ## addresses テーブル
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
-| user               | references | null: false,FK:true |
 | zip_code           | string | null: false,unique:true |
 | shipping_area_id   | integer| null: false | 
 | city               | string | null: false |
 | addles1            | string | null: false |
 | addles2            | string | 
 | telephone          | string | unique:true |
-| purchase_record    | references |
+| purchase_record    | references | null: false |
+
 Association
-belongs_to:user
+belongs_to:users

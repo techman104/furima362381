@@ -16,7 +16,9 @@
 | birth_day          | date   | null: false |
 
 Association
-has_many :items
+belongs_to:addres
+has_many :item
+belongs_to:Purchase_record
 
 ## items テーブル
 
@@ -24,7 +26,7 @@ has_many :items
 | ------ | ------ | ----------- |
 | name                  | string    | null: false |
 | text                  | text      | null: false |
-| category_id           | integer   | null: false,FK:true |
+| category_id           | integer   | null: false,|
 | condition_id          | integer   | null: false |
 | shipping_charge_id    | integer   | null: false |
 | shipping_area_id      | integer   | null: false |
@@ -32,26 +34,28 @@ has_many :items
 | price                 | integer   | null: false |
 
 Association
-belongs_to:users
-
+belongs_to:user
+belongs_to:Purchase_record
 ## Purchase_records テーブル
-| Column             | Type   | Options     |  
-| user_id            | references | nul: false
-|Purchase_information| references | null: false
+| Column             | Type       | Options     |  
+| user               | references | null: false,foreign_key: true |
+|item                | references | null: false,foreign_key: true |
 
 Association
-belongs_to:users
-belongs_to:items
+belongs_to:user
+belongs_to:item
+belongs_to:addres
+
 ## addresses テーブル
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
-| zip_code           | string | null: false,unique:true |
+| zip_code           | string | null: false |
 | shipping_area_id   | integer| null: false | 
 | city               | string | null: false |
 | addles1            | string | null: false |
-| addles2            | string | 
+| addles2            | string |
 | telephone          | string | unique:true |
-| purchase_record    | references | null: false |
+| Purchase_record    | references | null: false,foreign_key: true |
 
 Association
-belongs_to:users
+belongs_to:user

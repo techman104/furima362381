@@ -16,9 +16,8 @@
 | birth_day          | date   | null: false |
 
 Association
-belongs_to:addres
-has_many :item
-belongs_to:Purchase_record
+has_many :items
+has_many :Purchase_records
 
 ## items テーブル
 
@@ -32,10 +31,11 @@ belongs_to:Purchase_record
 | shipping_area_id      | integer   | null: false |
 | day_id                | integer   | null: false |
 | price                 | integer   | null: false |
+| user                  | references| null: false,foreign_key: true |
 
 Association
 belongs_to:user
-belongs_to:Purchase_record
+has_one :Purchase_record
 ## Purchase_records テーブル
 | Column             | Type       | Options     |  
 | user               | references | null: false,foreign_key: true |
@@ -44,7 +44,7 @@ belongs_to:Purchase_record
 Association
 belongs_to:user
 belongs_to:item
-belongs_to:addres
+has_one :addres
 
 ## addresses テーブル
 | Column             | Type   | Options     |
@@ -54,8 +54,8 @@ belongs_to:addres
 | city               | string | null: false |
 | addles1            | string | null: false |
 | addles2            | string |
-| telephone          | string | unique:true |
-| Purchase_record    | references | null: false,foreign_key: true |
+| telephone          | string | null: false |
+| purchase_record    | references | null: false,foreign_key: true |
 
 Association
-belongs_to:user
+has_one :purchase_record

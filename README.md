@@ -44,7 +44,7 @@ has_one :Purchase_record
 Association
 belongs_to:user
 belongs_to:item
-has_one :addres
+has_one :address
 
 ## addresses テーブル
 | Column             | Type   | Options     |
@@ -58,4 +58,4 @@ has_one :addres
 | purchase_record    | references | null: false,foreign_key: true |
 
 Association
-has_one :purchase_record
+belongs_to :purchase_record

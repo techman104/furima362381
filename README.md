@@ -17,7 +17,7 @@
 
 Association
 has_many :items
-has_many :Purchase_records
+has_many :purchase_records
 
 ## items テーブル
 
@@ -35,7 +35,7 @@ has_many :Purchase_records
 
 Association
 belongs_to:user
-has_one :Purchase_record
+has_one :purchase_record
 ## Purchase_records テーブル
 | Column             | Type       | Options     |  
 | user               | references | null: false,foreign_key: true |

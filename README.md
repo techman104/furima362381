@@ -24,7 +24,7 @@ has_many :purchase_records
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
 | name                  | string    | null: false |
-| text                  | text      | null: false |
+| introduction          | text      | null: false |
 | category_id           | integer   | null: false,|
 | condition_id          | integer   | null: false |
 | shipping_charge_id    | integer   | null: false |

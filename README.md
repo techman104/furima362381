@@ -13,9 +13,7 @@
 | first_name_kana    | string | null: false |
 | email              | string | null: false,unique:true |
 | encrypted_password | string | null: false |
-| birth_year         | string | null: false |
-| birth_month        | string | null: false |
-
+| birthday           | date   | null: false |
 
 Association
 has_many :items

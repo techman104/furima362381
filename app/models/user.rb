@@ -6,10 +6,19 @@ class User < ApplicationRecord
 
   validates :nickname, presence: true       
   validates :first_name, presence: true
-  # validates :encrypted_password,:password,:password_confirmation,length:{minimum:7},format:{with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{7,}/}
   validates :family_name, presence: true
   validates :first_name_kana, presence: true  
   validates :family_name_kana, presence: true
   validates :birth_day, presence: true
+  with_options format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'is invalid. Input full-width characters' } do
+    validates :first_name
+    validates :family_name
+  end
+  with_options format: { with: /\A[ァ-ヶ]+\z/, message: 'is invalid. Input full-width katakana characters' } do
+    validates :first_name_kana
+    validates :family_name_kana
+  end  
+    PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+  validates_format_of :password, with: PASSWORD_REGEX, message: ' invalid. Include both letters and numbers' 
 
 end

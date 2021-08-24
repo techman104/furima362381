@@ -5,9 +5,13 @@ RSpec.describe User, type: :model do
   end
 
     describe 'ユーザー新規登録' do
-      # it '全ての項目に正しく記述されていれば登録できる' do
-      #   expect(@user).to be_valid
-      # end  
+      context '全ての項目に正しく記述されていれば登録できる' do
+        it '全ての項目に正しく記述されていれば登録できる' do
+          expect(@user).to be_valid
+        end  
+      end
+      context '全ての項目に正しく記述されていなければ登録できない' do
+      
       it 'nicknameが空では登録できない' do
         @user.nickname = ''
         @user.valid?
@@ -69,8 +73,8 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("First name can't be blank")
       end
       it 'nickname_kanaが全角カタカナでないと登録できない' do
-        @user.family_name = 'ああああああ'
-        @user.first_name = ''
+        @user.family_name = ''
+        @user.first_name = 'あああああああ'
         @user.valid?
         expect(@user.errors.full_messages).to include("First name can't be blank")
       end
@@ -83,6 +87,26 @@ RSpec.describe User, type: :model do
         @user.family_name = "kana"
         @user.valid?
         expect(@user.errors.full_messages).to include("Family name is invalid. Input full-width characters")
+        end
+      it "名前のふりがなは空では登録できない" do
+          @user.family_name_kana = ""
+          @user.valid?
+          expect(@user.errors.full_messages).to include("Family name can't be blank")
+        end
+      it "苗字のふりがなは空では登録できない" do
+          @user.first_name_kana = ""
+          @user.valid?
+          expect(@user.errors.full_messages).to include("First name kana can't be blank")
+        end
+      it "名前のふりがなは全角カタカナでなければ登録できない" do
+          @user.family_name_kana = ""
+          @user.valid?
+          expect(@user.errors.full_messages).to include("Family name kana is invalid. Input full-width katakana characters")
+        end
+      it "苗字のふりがなは全角カタカナでなければ登録できない" do
+          @user.first_name_kana = ""
+          @user.valid?
+          expect(@user.errors.full_messages).to include("First name kana is invalid. Input full-width katakana characters")
         end
       it 'birth_dayが空では登録できない' do
         @user.birth_day = ''

@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController 
-  before_action :move_to_index, except: [:index, :show]  
+  # before_action :move_to_index, except: [:index, :show]  
   def index
-    @items = Item.all
+    # @items = Item.all
   end
   
   # private

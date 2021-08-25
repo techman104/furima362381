@@ -13,17 +13,15 @@
 | first_name_kana    | string | null: false |
 | email              | string | null: false,unique:true |
 | encrypted_password | string | null: false |
-| birth_day          | date   | null: false |
-
-Association
-has_many :items
-has_many :purchase_records
 
 ## items テーブル
 
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
 | name                  | string    | null: false |
+
+belongs_to:user
+
 | introduction          | text      | null: false |
 | category_id           | integer   | null: false,|
 | condition_id          | integer   | null: false |
@@ -59,3 +57,4 @@ has_one :address
 
 Association
 belongs_to :purchase_record
+

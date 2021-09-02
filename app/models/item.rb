@@ -8,10 +8,22 @@ class Item < ApplicationRecord
 
   belongs_to :user
 
-  validates :title, :text, presence: true
+  with_options presence: true do
+    validates :title
+    validates :text
+    validates :category
+    validates :delivery
+    validates :area
+    validates :status
+    validates :day
+  end
+
+    validates :price, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is invalid"}
+
   validates :categry_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :delivery_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :area_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :status_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :day_id, numericality: { other_than: 1 , message: "can't be blank"}
+  
 end

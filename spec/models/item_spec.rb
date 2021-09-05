@@ -59,6 +59,51 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Day can't be blank")
       end
+      it"金額は300円未満では登録できない" do
+        @item.price = 299
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is invalid")
+      end
+        it"金額は9_999_999円を超えると登録できない" do
+        @item.price = 10000000
+        @item.valid?  
+        expect(@item.errors.full_messages).to include("Price is invalid")
+      end
+        it"金額は全角文字では登録できない" do
+        @item.price = "３００"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is invalid")
+      end
+        it"userが紐付いていなければ登録できない" do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
+      end
+        it"category_idのカラムはid1では登録できない" do
+        @item.category_id = "1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category can't be blank")
+      end
+        it"delivery_idのカラムはid1では登録できない" do
+        @item.delivery_id = "1"
+        @item.valid?  
+        expect(@item.errors.full_messages).to include("Delivery can't be blank")
+      end
+        it"area_idのカラムはid1では登録できない" do
+        @item.area_id = "1"
+        @item.valid?  
+        expect(@item.errors.full_messages).to include("Area can't be blank")
+      end  
+      it"status_idのカラムはid1では登録できない" do
+        @item.status_id = "1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Status can't be blank")
+      end  
+      it"day_idのカラムはid1では登録できない" do
+        @item.day_id = "1"
+        @item.valid?  
+        expect(@item.errors.full_messages).to include("Day can't be blank")
+      end  
     end  
   end
 end

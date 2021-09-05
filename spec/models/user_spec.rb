@@ -47,21 +47,21 @@ RSpec.describe User, type: :model do
       end
       it "英字のみでは登録できない" do
         @user.password = 'aaaaaaa'
-        @use.password_confirmation = 'aaaaaaaa'
+        @user.password_confirmation = 'aaaaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password invalid. Include both letters and numbers")
-      end
+        expect(@user.errors.full_messages).to include("Password  invalid. Include both letters and numbers")
+      end                                              
       it "数値のみでは登録できない" do
         @user.password = '111111'
-        @use.password_confirmation = '111111'
+        @user.password_confirmation = '111111'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password invalid. Include both letters and numbers")
+        expect(@user.errors.full_messages).to include("Password  invalid. Include both letters and numbers")
       end
       it "全角文字では登録できない" do
-        @user.password = 'AA12BB'
-        @use.password_confirmation = 'AA12BB'
+        @user.password = 'AA12Bあ'
+        @user.password_confirmation = 'AA12Bあ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password invalid. Include both letters and numbers")
+        expect(@user.errors.full_messages).to include("Password  invalid. Include both letters and numbers")
       end
       it 'emailに@がないと登録できない' do
         @user.email = "kkkgmail.com"
@@ -91,7 +91,7 @@ RSpec.describe User, type: :model do
       it "名前のふりがなは空では登録できない" do
           @user.family_name_kana = ""
           @user.valid?
-          expect(@user.errors.full_messages).to include("Family name can't be blank")
+          expect(@user.errors.full_messages).to include("Family name kana can't be blank")
         end
       it "苗字のふりがなは空では登録できない" do
           @user.first_name_kana = ""
@@ -113,5 +113,6 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Birth day can't be blank")
       end
-  end
+    end
+  end  
 end

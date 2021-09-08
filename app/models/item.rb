@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   belongs_to :area
   belongs_to :day
   belongs_to :status
+  belongs_to :Order
 
   belongs_to :user
   has_one_attached :image

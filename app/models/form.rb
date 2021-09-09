@@ -11,10 +11,7 @@ class Form
     validates :area_id, numericality: { other_than: 1, message: "can't be blank" }
 
   def save
-      # 寄付情報を保存し、変数donationに代入する
       order = Order.create(item_id: item_id, user_id: user_id)
-      # 住所を保存する
-      # donation_idには、変数donationのidと指定する
       Address.create(zip_code: zip_code, area_id: area_id, city: city, address1: address1, address2: address2, order_id: order.id, telephone: telephone)
   end
 end

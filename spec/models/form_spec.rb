@@ -16,7 +16,7 @@ RSpec.describe Form, type: :model do
         @form.valid?
         expect(@form.errors.full_messages).to include("Token can't be blank")
       end
-    end  
+    end
     it 'zip_codeが空では購入できない' do
       @form.zip_code = ''
       @form.valid?
@@ -50,18 +50,17 @@ RSpec.describe Form, type: :model do
     it 'zip_codeにハイフンが入っていなければ購入できない' do
       @form.zip_code = '1234567'
       @form.valid?
-      expect(@form.errors.full_messages).to include("Zip code is invalid. Include hyphen(-)")
+      expect(@form.errors.full_messages).to include('Zip code is invalid. Include hyphen(-)')
     end
     it 'telephoneは11桁でなければ購入できない' do
       @form.telephone = '123456789012'
       @form.valid?
-      expect(@form.errors.full_messages).to include("Telephone is invalid")
+      expect(@form.errors.full_messages).to include('Telephone is invalid')
     end
     it 'telephoneは数字でなければ購入できない' do
       @form.telephone = 'あああああああああああ'
       @form.valid?
-      expect(@form.errors.full_messages).to include("Telephone is invalid")
+      expect(@form.errors.full_messages).to include('Telephone is invalid')
     end
-  end  
-
-end  
+  end
+end

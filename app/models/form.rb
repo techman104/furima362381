@@ -1,8 +1,9 @@
 class Form
   include ActiveModel::Model
-  attr_accessor :zip_code, :area_id, :city, :address1, :address2, :purchase_record, :user_id, :item_id, :telephone
+  attr_accessor :zip_code, :area_id, :city, :address1, :address2, :purchase_record, :user_id, :item_id, :telephone, :token
   with_options presence: true do
     validates :zip_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
+    validates :token
     validates :city
     validates :address1
     validates :telephone, format: {with: /\A\d{11}\z/, message: "is invalid"}

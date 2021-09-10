@@ -22,19 +22,19 @@
 
 belongs_to:user
 
-| introduction          | text      | null: false |
+| text                  | text      | null: false |
 | category_id           | integer   | null: false,|
-| condition_id          | integer   | null: false |
-| shipping_charge_id    | integer   | null: false |
-| shipping_area_id      | integer   | null: false |
+| status_id             | integer   | null: false |
+| delivery_id           | integer   | null: false |
+| area_id               | integer   | null: false |
 | day_id                | integer   | null: false |
 | price                 | integer   | null: false |
 | user                  | references| null: false,foreign_key: true |
 
 Association
 belongs_to:user
-has_one :purchase_record
-## Purchase_records テーブル
+has_one :order
+## orders テーブル
 | Column             | Type       | Options     |  
 | user               | references | null: false,foreign_key: true |
 |item                | references | null: false,foreign_key: true |
@@ -48,13 +48,13 @@ has_one :address
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
 | zip_code           | string | null: false |
-| shipping_area_id   | integer| null: false | 
+| area_id            | integer| null: false | 
 | city               | string | null: false |
 | addles1            | string | null: false |
 | addles2            | string |
 | telephone          | string | null: false |
-| purchase_record    | references | null: false,foreign_key: true |
+| order              | references | null: false,foreign_key: true |
 
 Association
-belongs_to :purchase_record
+belongs_to :order
 

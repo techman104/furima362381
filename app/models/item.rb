@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   belongs_to :area
   belongs_to :day
   belongs_to :status
+  has_one    :order
 
   belongs_to :user
   has_one_attached :image
@@ -12,6 +13,7 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :title
     validates :text
+    validates :image
   end
 
   validates :price, presence: true,

@@ -7,6 +7,8 @@ class Form
     validates :zip_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
     validates :token
     validates :city
+    validates :user_id
+    validates :item_id
     validates :address1
     validates :telephone, format: { with: /\A\d{11}\z/, message: 'is invalid' }
   end

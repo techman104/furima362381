@@ -1,14 +1,12 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: %i[index create]
-
+  before_action :set_order, only: %i[index create]
   def index
-    @item = Item.find(params[:item_id])
     @form = Form.new
     redirect_to root_path if current_user.id == @item.user_id || @item.order.present?
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @form = Form.new(order_params)
     if @form.valid?
       pay_item
@@ -34,6 +32,9 @@ class OrdersController < ApplicationController
       card: order_params[:token], # カードトークン
       currency: 'jpy' # 通貨の種類（日本円）
     )
+  end
+  def set_order
+    @item = Item.find(params[:item_id])
   end
 
   # 削除

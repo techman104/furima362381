@@ -33,6 +33,7 @@ class OrdersController < ApplicationController
       currency: 'jpy' # 通貨の種類（日本円）
     )
   end
+
   def set_order
     @item = Item.find(params[:item_id])
   end

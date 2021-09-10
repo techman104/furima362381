@@ -5,7 +5,7 @@ RSpec.describe Form, type: :model do
     # binding.pry
     item = FactoryBot.create(:item)
 
-      @form = FactoryBot.build(:form, user_id: user.id, item_id: item.id)
+    @form = FactoryBot.build(:form, user_id: user.id, item_id: item.id)
     # @form = FactoryBot.build(:form)
   end
 
@@ -59,7 +59,7 @@ RSpec.describe Form, type: :model do
       @form.item_id = nil
       @form.valid?
       expect(@form.errors.full_messages).to include("Item can't be blank")
-    end  
+    end
     it 'area_idのカラムはid1では購入できない' do
       @form.area_id = '1'
       @form.valid?
@@ -70,13 +70,18 @@ RSpec.describe Form, type: :model do
       @form.valid?
       expect(@form.errors.full_messages).to include('Zip code is invalid. Include hyphen(-)')
     end
-    it 'telephoneは11桁でなければ購入できない' do
+    it 'telephoneは10桁以上11桁以下でなければ購入できない' do
       @form.telephone = '123456789012'
       @form.valid?
       expect(@form.errors.full_messages).to include('Telephone is invalid')
     end
     it 'telephoneは数字でなければ購入できない' do
       @form.telephone = 'あああああああああああ'
+      @form.valid?
+      expect(@form.errors.full_messages).to include('Telephone is invalid')
+    end
+    it 'telephoneは9桁では購入できない' do
+      @form.telephone = '123456789'
       @form.valid?
       expect(@form.errors.full_messages).to include('Telephone is invalid')
     end

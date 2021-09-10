@@ -10,7 +10,7 @@ class Form
     validates :user_id
     validates :item_id
     validates :address1
-    validates :telephone, format: { with: /\A\d{11}\z/, message: 'is invalid' }
+    validates :telephone, format: { with: /\A\d{10,11}\z/, message: 'is invalid' }
   end
   validates :area_id, numericality: { other_than: 1, message: "can't be blank" }
 
